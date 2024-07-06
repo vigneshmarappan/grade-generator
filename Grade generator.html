@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<head>
+   
+    <title>💯 Student Grade Mark</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: black;
+            color: white;
+            height: 100px;
+            display: flex;
+            
+            align-items: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        p {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        h1 {
+            margin: 0;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #333;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: #eaeaea;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Student Grade Conversion</h1>
+    </div>
+    <hr>
+    <div class="container">
+        <p>Welcome to the Grade Conversion Tool! This user-friendly web application is designed to help teachers and educators efficiently convert numerical grades into letter grades for their students. Whether you're managing a small class or a large group of students, our tool simplifies the process and ensures accuracy in your grading.</p>
+        
+        <form id="gradeForm">
+            <label for="english">English Marks:</label>
+            <input type="number" id="english" required>
+
+            <label for="tamil">Tamil Marks:</label>
+            <input type="number" id="tamil" required>
+
+            <label for="maths">Maths Marks:</label>
+            <input type="number" id="maths" required>
+
+            <label for="science">Science Marks:</label>
+            <input type="number" id="science" required>
+
+            <label for="social">Social Marks:</label>
+            <input type="number" id="social" required>
+
+            <button type="button" onclick="calculateGrade()">Calculate Grade</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function calculateGrade() {
+            const english = parseFloat(document.getElementById('english').value);
+            const tamil = parseFloat(document.getElementById('tamil').value);
+            const maths = parseFloat(document.getElementById('maths').value);
+            const science = parseFloat(document.getElementById('science').value);
+            const social = parseFloat(document.getElementById('social').value);
+
+            if (isNaN(english) || isNaN(tamil) || isNaN(maths) || isNaN(science) || isNaN(social)) {
+                alert("Please enter valid marks for all subjects.");
+                return;
+            }
+
+            const total = english + tamil + maths + science + social;
+            const average = total / 5;
+            let grade = '';
+
+            if (average >= 90) {
+                grade = 'A';
+            } else if (average >= 80) {
+                grade = 'B';
+            } else if (average >= 70) {
+                grade = 'C';
+            } else if (average >= 60) {
+                grade = 'D';
+            } else {
+                grade = 'F';
+            }
+
+            document.getElementById('result').innerHTML = `
+                <p>Average Marks: ${average.toFixed(2)}</p>
+                <p>Grade: ${grade}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
+
